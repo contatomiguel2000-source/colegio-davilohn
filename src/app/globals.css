@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+/* Paleta: estrutura do layout de referência com as cores do logotipo Dávilohn */
+@theme inline {
+  --color-navy: #1e5b7c; /* azul escuro do logo */
+  --color-navy-deep: #133c53;
+  --color-sky: #0098da; /* azul médio do logo */
+  --color-cyan: #00aeef;
+  --color-sun: #fff212; /* amarelo do logo */
+  --color-mist: #deeff8; /* azul bem claro */
+  --color-ice: #ebf8ff;
+  --color-cream: #fffffc;
+  --color-butter: #f9fae3;
+  --color-peach: #fdf1e4;
+  --color-ink: #10222c;
+  --color-slate: #4f6470;
+  --font-sans: var(--font-instrument), "Instrument Sans", system-ui, sans-serif;
+  --font-serif: var(--font-baskerville), "Libre Baskerville", Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-instrument), "Instrument Sans", system-ui, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+section[id] {
+  scroll-margin-top: 6rem;
+}
+
+.t-display {
+  font-size: clamp(2.5rem, 5.6vw, 4.75rem);
+  line-height: 1.04;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+.t-h2 {
+  font-size: clamp(2rem, 3.6vw, 3rem);
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+.t-h3 {
+  font-size: clamp(1.25rem, 1.8vw, 1.6rem);
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+/* Etiqueta em pílula sobre os títulos */
+.pill-tag {
+  display: inline-block;
+  border-radius: 0.375rem;
+  background: var(--color-mist);
+  padding: 0.25rem 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-navy);
+}
+
+/* Legenda manuscrita (itálico serifado) */
+.note-tag {
+  font-family: var(--font-baskerville), Georgia, serif;
+  font-style: italic;
+  font-size: 0.8rem;
+  line-height: 1.25;
+  border: 1.5px solid var(--color-ink);
+  border-radius: 0.35rem;
+  background: #fff;
+  padding: 0.3rem 0.55rem;
+  box-shadow: 2px 2px 0 var(--color-ink);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Faixas que deslizam */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+.marquee:hover {
+  animation-play-state: paused;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .marquee {
+    animation: none;
+  }
+}
